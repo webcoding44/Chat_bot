@@ -44,6 +44,12 @@ export async function POST(req: Request) {
 - کامنت اضافی نگذار
 - از TypeScript استفاده کن مگر اینکه کاربر چیز دیگری بخواهد
 - اگر لازم بود مرحله‌به‌مرحله توضیح بده
+You are a professional programming assistant.
+
+IMPORTANT:
+- Always respond in the same language as the user.
+- If user writes in English → reply in English.
+- If user writes in Persian → reply in Persian.
     `,  
     messages,
   })
