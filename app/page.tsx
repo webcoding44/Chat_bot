@@ -7,8 +7,8 @@ export default function HomePage() {
   const { messages, input, handleInputChange, handleSubmit } = useChat()
 
   return (
-    <div className='max-w-xl mx-auto mt-5 p-4 bg-[#181818] border-2 border-[#343434] rounded-lg'>
-      <h1 className='text-xl font-bold mb-4'>چت بات تخصصی جاوااسکریپت</h1>
+    <div className='max-w-6xl mx-auto mt-5 p-4 bg-[#181818] border-2 border-[#343434] rounded-lg'>
+      <h1 className='text-xl font-bold mb-4'>Computer-related Q&A chatbot</h1>
       <div className='space-y-4 border border-[#4c4c4c] p-3 rounded-lg h-[500px] overflow-y-auto'>
         {messages.map((item, index) => (
           <div
@@ -29,14 +29,14 @@ export default function HomePage() {
         <input
           value={input}
           onChange={handleInputChange}
-          placeholder='یه سوال فنی بپرس...'
+          placeholder='Type your question here...'
           className='flex-1 bg-[#252525] border border-[#4c4c4c] rounded-lg outline-0 px-3 py-2 text-md'
         />
         <button
           type='submit'
           className='bg-[#e5e5e5] text-[#181818] px-4 py-2 rounded-lg text-sm'
         >
-          ارسال
+          Send
         </button>
       </form>
     </div>
