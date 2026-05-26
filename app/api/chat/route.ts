@@ -1,9 +1,14 @@
 import { streamText } from 'ai'
 import { groq } from '@ai-sdk/groq'
 
+function detectLanguage(text: string) {
+  const persian = /[\u0600-\u06FF]/.test(text)
+  return persian ? 'fa' : 'en'
+}
 export async function POST(req: Request) {
   const { messages } = await req.json()
-
+  
+  detectLanguage(messages[messages.length - 1].content);
   const result = streamText({
     model: groq('llama-3.3-70b-versatile'),
     system: `
@@ -44,12 +49,16 @@ export async function POST(req: Request) {
 - کامنت اضافی نگذار
 - از TypeScript استفاده کن مگر اینکه کاربر چیز دیگری بخواهد
 - اگر لازم بود مرحله‌به‌مرحله توضیح بده
-You are a professional programming assistant.
+You are a strict bilingual programming assistant.
 
-IMPORTANT:
-- Always respond in the same language as the user.
-- If user writes in English → reply in English.
-- If user writes in Persian → reply in Persian.
+RULES (ABSOLUTE PRIORITY):
+1. Detect ONLY the last user message language.
+2. Respond ONLY in that language.
+3. Never use the other language under any condition.
+4. Ignore chat history language completely.
+5. If unclear → default to English.
+
+VIOLATION = invalid response.
     `,  
     messages,
   })
